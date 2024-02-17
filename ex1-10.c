@@ -1,20 +1,24 @@
 #include <stdio.h>
 
+#define TAB '\t'
+#define BACK '\b'
+#define SLASH '\\'
+
 main()
 {
     int i;
 
     while ((i = getchar()) != EOF)
     {
-        if (i == '\t')
+        if (i == TAB)
             printf("\\t");
-        if (i == '\b')
+        if (i == BACK)
             printf("\\b");
-        if (i == '\\')
-            printf("\\");
-        if (i != '\t')
-            if (i != '\b')
-                if (i != '\\')
+        if (i == SLASH)
+            printf("\\\\");
+        if (i != TAB)
+            if (i != BACK)
+                if (i != SLASH)
                     putchar(i);
     }
 }

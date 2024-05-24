@@ -8,8 +8,9 @@ main()
 {
 	/* declare for loops, character input, new letter, word array and word
 	 * comparison array variables */
-	int i, c, nl, state, cw[50];
+	int i, c, nl, state;
 	char w[50];
+	int cw[50];
 
 	/* initialize the word state to avoid random memory assignment to
 	 * symoblic constant IN when used for the first time */
@@ -36,7 +37,7 @@ main()
 			 * letter count to 0 */
 			if (state == OUT)
 			{
-				w[0] = '0';
+				cw[0] = 0;
 				nl = 0;
 			}
 
@@ -58,18 +59,17 @@ main()
 			{
 				/* sort through the word array subindexes;
 				 * check if they contain letters by being
-				 * non-zero; if so, add one to w[0] as this
+				 * non-zero; if so, add one to cw[0] as this
 				 * subindex holds the length of the word*/
-				for (i = 1; i <= 50; ++i)
-					if (w[i] != '0')
-						++w[0];
+				for (i = 1; w[i] == '0'; ++i)
+					++cw[0];
 
 				/* store the length of the latest word into the
 				 * word comparison array by comparing its
 				 * length with 1-50 possible lengths
 				 * represented as its index numbers */
-				for (i = 1; i <= 50; ++i)
-					if (i == w[0])
+				for (i = 1; i != 50; ++i)
+					if (i == cw[0])
 						++cw[i];
 			}
 
@@ -91,12 +91,4 @@ main()
 
 		putchar('\n');
 	}
-
-	/* sort through the comparison array to check for the length with the
-	 * most words and store it in cw[0] */
-	cw[0] = 0;
-	for (i = 1; i <= 50; ++i)
-		if (cw[i] > cw[0])
-			cw[0] = cw[i];
-	printf("\nthe length with the most words was %d\n", cw[0]);
 }
